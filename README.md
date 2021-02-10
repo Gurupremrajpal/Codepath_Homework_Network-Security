@@ -74,7 +74,7 @@ GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while doing the work
+Click on star if you like :)
 
 ## License
 
