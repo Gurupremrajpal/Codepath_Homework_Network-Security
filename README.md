@@ -2,6 +2,5 @@
 
 CST312 Codepath_Homework 
 <br>
-See branches for assignments. 
-<br> 
+See branches for assignments.
 Click on Star if you like :)
